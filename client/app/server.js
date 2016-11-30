@@ -1,5 +1,16 @@
 import {readDocument, writeDocument, addDocument, deleteDocument, getCollection} from './database.js';
 
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '/user/4/feed');
+xhr.setRequestHeader('Authorization', 'Bearer jsontokenhere');
+
+xhr.addEventListener('load', function() {
+  // Call the callback with the data.
+  cb(JSON.parse(xhr.responseText));
+});
+
+xhr.send();
+
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
